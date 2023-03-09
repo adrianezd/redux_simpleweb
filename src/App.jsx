@@ -1,42 +1,36 @@
+import { useSelector, useDispatch } from "react-redux";
+import { logIn } from "./reducers/user/userReducer";
+
 export const App = () => {
-  
+  const dispatch = useDispatch();
+
+  const checkLogin = () => {
+    dispatch(logIn());
+  };
+
+  const {email, password, username, isLogged, token, age} = useSelector(state => state.user);
   return (
     <div className="App">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm">One of three columns</div>
-          <div className="col-sm">One of three columns</div>
-          <div className="col-sm">One of three columns</div>
-        </div>
-      </div>
-      <form>
+      <h1>Redux Simple Web</h1>
+      <h2>Username: {username}</h2>
+      <h2>Email: {email}</h2>
+      <h2>Password: {password}</h2>
+      <h2>Age: {age}</h2>
+      <h2>Logged: {isLogged ? "Yes" : "No"}</h2>
+      <h2>Token: {token}</h2>
+
         <div className="form-group">
           <label>Username</label>
           <input type="text" className="form-control" />
         </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleFormControlSelect1">Age</label>
-          <select className="form-control">
-            <option>Choose...</option>
-            <option>18+</option>
-            <option>18-</option>
-          </select>
-        </div>
+       
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Password</label>
           <input type="password" className="form-control" id="exampleInputPassword1" />
         </div>
-        <div className="form-group form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-          <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
-      </form>
+
+        <button type="submit" className="btn btn-primary"onClick={() => checkLogin()
+        }>Submit</button>
     </div>
   );
 };
