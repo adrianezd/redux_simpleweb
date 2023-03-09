@@ -35,3 +35,4 @@ dist
 stats.html
 
 .eslintcache
+src/db.json
